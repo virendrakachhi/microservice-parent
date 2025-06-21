@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: product-service
+
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/product-service'
+    username: postgres
+    password: 02091992
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8080
+
+
