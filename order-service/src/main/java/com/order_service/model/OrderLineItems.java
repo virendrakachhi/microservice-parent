@@ -1,4 +1,4 @@
-package com.order_service.order_service.model;
+package com.order_service.model;
 
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;

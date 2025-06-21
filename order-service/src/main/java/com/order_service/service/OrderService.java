@@ -1,11 +1,11 @@
-package com.order_service.order_service.service;
+package com.order_service.service;
 
 
-import com.order_service.order_service.dto.InventoryResponse;
-import com.order_service.order_service.dto.OrderRequest;
-import com.order_service.order_service.model.Order;
-import com.order_service.order_service.model.OrderLineItems;
-import com.order_service.order_service.repository.OrderRepository;
+import com.order_service.dto.InventoryResponse;
+import com.order_service.dto.OrderRequest;
+import com.order_service.model.Order;
+import com.order_service.model.OrderLineItems;
+import com.order_service.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,17 +14,18 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
+/*
 @Transactional(readOnly = true)
+*/
 public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
 
     @Autowired
-    WebClient webClient;
+    WebClient.Builder webClientBuilder;
 
     public void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -49,8 +50,9 @@ public class OrderService {
                 .toList();
 
 
-        InventoryResponse[] inventoryResponses = webClient.get()
-                .uri("http://localhost:8082/api/v1/stock",
+        InventoryResponse[] inventoryResponses = webClientBuilder.build()
+                .get()
+                .uri("http://inventory-service/api/v1/stock",
                         uriBuilder -> uriBuilder.queryParam("skuCode",skuCodeList)
                                 .build()
                 )

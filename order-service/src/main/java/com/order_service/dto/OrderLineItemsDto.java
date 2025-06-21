@@ -1,4 +1,4 @@
-package com.order_service.order_service.dto;
+package com.order_service.dto;
 
 import lombok.Getter;
 
