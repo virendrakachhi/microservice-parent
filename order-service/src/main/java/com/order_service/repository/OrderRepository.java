@@ -1,7 +1,6 @@
-package com.order_service.order_service.repository;
+package com.order_service.repository;
 
-import com.order_service.order_service.dto.OrderLineItemsDto;
-import com.order_service.order_service.model.Order;
+import com.order_service.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
